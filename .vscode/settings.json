@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/6e135bbb-18b1-4306-9494-c9efbab86510/resourceGroups/leeruddportolio/providers/Microsoft.Web/sites/leeruddportolio",
+    "appService.deploySubpath": "."
+}

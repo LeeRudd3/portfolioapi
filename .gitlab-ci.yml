@@ -1,0 +1,8 @@
+image: node:latest
+
+stages:
+- build
+
+build:
+  - script: docker build -t my-app .
+  - script: docker push my-app

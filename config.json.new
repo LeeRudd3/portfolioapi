@@ -1,0 +1,11 @@
+{
+  "database": {
+    "host": "mongodb://listingmongodb:WrUWX30DWP5GJ138COz36bUYW6qVSKmAYynZ7vTYqj4IXrxPK7Ki84ec9xysBol2IPCHZ1du45Y8ACDbQsfBeA%3D%3D@listingmongodb.mongo.cosmos.azure.com:10255/?ssl=true&retrywrites=false&maxIdleTimeMS=120000&appName=@listingmongodb@",
+    "collection": "listings",
+    "database": "bandbook"
+  },
+  "server": {
+    "address": "leeruddportfolioapi.azurewebsites.net",
+    "port": 8080
+  }
+}
