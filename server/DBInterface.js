@@ -1,4 +1,4 @@
-const config = require('../config.json');
+const config = require('../etc/secrets/config.json');
 const bodyParser = require('body-parser');
 
 const express = require("express");
