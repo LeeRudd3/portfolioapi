@@ -1,9 +1,9 @@
 // server/index.js
-const config = require('../config.json');
+const config = require('./common/config/config.json');
 const bodyParser = require('body-parser');
-const DBInterface = require('./DBInterface');
+const DBInterface = require('./common/services/DBInterface');
 const express = require("express");
-const { MongoClient, ObjectId } = require('mongodb');
+const { MongoClient } = require('mongodb');
 
 
 
@@ -17,6 +17,12 @@ const dbInterface = new DBInterface(config.database.host,
   config.database.database,
   config.database.collection);
 
+  const admindbInterface = new DBInterface(config.database.host, 
+    new MongoClient(config.database.host),
+    config.database.database,
+    config.database.admin);
+  
+
 
 // Define an array of random texts.
 const randomTexts = [
@@ -28,6 +34,10 @@ const randomTexts = [
 // Have Node serve the files for our built React app
 //app.use(express.static(path.resolve(__dirname, '../client/build')));
 app.use(bodyParser.json());
+
+const UsersRouter = require('./users/routes.config');
+
+UsersRouter.routesConfig(app);
 
 app.get("/api", (req, res) => {
   const randomIndex = Math.floor(Math.random() * randomTexts.length);

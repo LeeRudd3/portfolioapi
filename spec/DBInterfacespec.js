@@ -1,4 +1,4 @@
-const DBInterface = require('../server/DBInterface'); // Adjust the path to your DBInterface class
+const DBInterface = require('../server/common/services/DBInterface'); // Adjust the path to your DBInterface class
 //const config = require('../config.json');
 //const { MongoClient } = require('mongodb');
 //const jasmine = require('jasmine');

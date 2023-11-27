@@ -1,4 +1,4 @@
-const config = require('../config.json');
+const config = require('../../../config.json');
 const bodyParser = require('body-parser');
 
 const express = require("express");
@@ -73,10 +73,7 @@ class DBInterface {
     } catch (e) {
         console.error(e);
         id = e;
-    } finally {
-        // Close the connection to the MongoDB cluster
-        //await this.client.close();
-    }
+    } 
     return id;
   }
 
