@@ -1,4 +1,4 @@
-const config = require('../../common/config/config.json');
+const config = require('../../common/config/env.config');
 const bodyParser = require('body-parser');
 const { MongoClient, ObjectId } = require('mongodb');
 

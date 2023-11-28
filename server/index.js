@@ -1,5 +1,5 @@
 // server/index.js
-const config = require('./common/config/config.json');
+const config = require('./common/config/env.config');
 const bodyParser = require('body-parser');
 const DBInterface = require('./common/services/DBInterface');
 const express = require("express");
@@ -35,6 +35,7 @@ const randomTexts = [
 //app.use(express.static(path.resolve(__dirname, '../client/build')));
 const AuthorizationRouter = require('./authorization/routes.config');
 const UsersRouter = require('./users/routes.config');
+const BandRouter =  require('./band/routes.config');
 
 app.use(function (req, res, next) {
     res.header('Access-Control-Allow-Origin', '*');
@@ -52,6 +53,7 @@ app.use(function (req, res, next) {
 app.use(express.json());
 AuthorizationRouter.routesConfig(app);
 UsersRouter.routesConfig(app);
+BandRouter.routesConfig(app);
 
 app.get("/api", (req, res) => {
   const randomIndex = Math.floor(Math.random() * randomTexts.length);
