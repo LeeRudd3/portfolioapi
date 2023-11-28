@@ -13,6 +13,7 @@ module.exports = {
         "host": "mongodb+srv://pearlee:blackberry123@motodb.mrqbd.mongodb.net/bandbook?retryWrites=true&w=majority",
         "collection": "listings",
         "admin": "admin",
+        "bands": "bands",
         "database": "bandbook"
       }
 };

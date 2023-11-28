@@ -7,7 +7,7 @@ const { MongoClient } = require('mongodb');
 
 
 
-const PORT = process.env.PORT || config.server.port;
+const PORT = process.env.PORT || config.port;
 
 const path = require('path');
 const app = express();

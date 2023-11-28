@@ -11,4 +11,8 @@ exports.routesConfig = function (app) {
     app.get('/bands', [
         BandController.list
     ]);
+
+    app.post('/bands', [
+
+    ]);
 };

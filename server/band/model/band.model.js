@@ -5,7 +5,7 @@ const { MongoClient, ObjectId } = require('mongodb');
 const uri = config.database.host;
 const client = new MongoClient(config.database.host);
 const db = config.database.database;
-const collection = config.database.collection
+const collection = config.database.bands
 
 exports.list = async (perPage, page) => {
     var bands = null;
