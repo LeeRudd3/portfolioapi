@@ -83,11 +83,9 @@ class DBInterface {
     try {
       // Connect to the MongoDB cluster
       await this.client.connect();
-      // Make the appropriate DB calls
-      //listings = await findListings(client, numberOfListings);
 
       const projection = {
-        _id: 1,  // Exclude the '_id' field
+        _id: 1,  
         name: 1,
         summary: 1,
         bedrooms: 1,
