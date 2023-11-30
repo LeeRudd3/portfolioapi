@@ -13,3 +13,29 @@ exports.list = (req, res) => {
         res.status(200).send(result);
     })
  };
+
+exports.getById = (req, res) => {
+    BandModel.findById(req.params.bandId).then((result) => {
+        res.status(200).send(result);
+    });
+};
+
+exports.create = (req, res) => {
+    BandModel.createBand(req.body)
+        .then((result) => {
+            res.status(201).send(result);
+    });   
+};
+
+exports.patchById = (req, res) => {
+    BandModel.patchUser(req.params.bandId, req.body).then((result) => {
+            res.status(204).send(result);
+    });
+};
+
+exports.removeById = (req, res) => {
+    BandModel.removeById(req.params.bandId)
+        .then((result)=>{
+            res.status(204).send({});
+    });
+};

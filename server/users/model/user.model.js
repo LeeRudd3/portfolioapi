@@ -1,4 +1,4 @@
-const config = require('../../common/config/env.config');
+const config = require('../../../env.config');
 const bodyParser = require('body-parser');
 const { MongoClient, ObjectId } = require('mongodb');
 
@@ -34,17 +34,10 @@ exports.findByEmail = async (userEmail) => {
 exports.findById = async (id) => {
   var result = null;
   try {
-    // Connect to the MongoDB cluster
+    
     await client.connect();
       const query = { _id: new ObjectId(id) };
       result = await client.db(db).collection(collection).findOne(query);
-    
-    if (result) {
-        console.log(`Found a listing in the collection with the name '${id}':`);
-        console.log(result);
-    } else {
-        console.log(`No listings found with the name '${id}'`);
-    }
   } catch (e) {
     console.error(e);
   } 
@@ -102,8 +95,6 @@ exports.removeById = async (userId) => {
   
   try {
 
-    //await client.connect();
-    console.log('test');
     const query = { _id: new ObjectId(userId) };
     const result = await client.db(db).collection(collection)
             .deleteOne(query);

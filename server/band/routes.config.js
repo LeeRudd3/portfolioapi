@@ -1,7 +1,7 @@
 const BandController = require('./controllers/band.controller');
 const PermissionMiddleware = require('../common/middlewares/auth.permission.middleware');
 const ValidationMiddleware = require('../common/middlewares/auth.validation.middleware');
-const config = require('../common/config/env.config');
+const config = require('../../env.config');
 
 const ADMIN = config.permissionLevels.ADMIN;
 const PAID = config.permissionLevels.PAID_USER;
@@ -12,7 +12,19 @@ exports.routesConfig = function (app) {
         BandController.list
     ]);
 
-    app.post('/bands', [
+    app.get('/bands/:bandId', [
+        BandController.getById
+    ]);
 
+    app.post('/bands', [
+        BandController.create
+    ]);
+
+    app.patch('/bands/:bandId', [
+        BandController.patchById
+    ]);
+
+    app.delete('/bands/:bandId', [
+        BandController.removeById
     ]);
 };
