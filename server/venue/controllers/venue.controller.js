@@ -30,7 +30,6 @@ exports.create = (req, res) => {
 exports.patchById = (req, res) => {
     VenueModel.patchVenue(req.params.venueId, req.body)
         .then((result) => {
-            console.log(result);
             res.status(200).send({message: result});
     });
 };

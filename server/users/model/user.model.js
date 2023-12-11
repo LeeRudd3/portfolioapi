@@ -53,13 +53,7 @@ exports.list = async (perPage, page) => {
     await client.connect();
   
     users = client.db(db).collection(collection).find().limit(perPage).skip(perPage * page).toArray();
-    
-    if (users) {
-        console.log(`Found a listings : `);
-    } else {
-        console.log(`No listings found. `);
-    }
-        
+            
   } catch (e) {
       console.error(e);
       users = e;
@@ -98,7 +92,6 @@ exports.removeById = async (userId) => {
     const query = { _id: new ObjectId(userId) };
     const result = await client.db(db).collection(collection)
             .deleteOne(query);
-    console.log(result);
     if(result.deletedCount == 1) {
       success = true;
     }

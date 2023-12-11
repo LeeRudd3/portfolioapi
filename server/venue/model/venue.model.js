@@ -15,13 +15,7 @@ exports.list = async (perPage, page) => {
       await client.connect();
     
       venue = client.db(db).collection(collection).find().limit(perPage).skip(perPage * page).toArray();
-      
-      if (venue) {
-          console.log(`Found a listings : `);
-      } else {
-          console.log(`No listings found. `);
-      }
-          
+                
     } catch (e) {
         console.error(e);
         venue = e;
@@ -130,11 +124,8 @@ exports.search = async (searchTerm) => {
     }).toArray();
     
     if (result) {
-        console.log(`Found a listing in the collection with the name '${searchTerm}':`);
-        console.log(result);
         return result;
     } else {
-        console.log(`No listings found with the name '${searchTerm}'`);
         return null;
     }
 };

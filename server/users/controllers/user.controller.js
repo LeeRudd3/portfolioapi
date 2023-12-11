@@ -5,7 +5,7 @@ exports.create = (req, res) => {
     let salt = crypto.randomBytes(16).toString('base64');
     let hash = crypto.createHmac('sha512', salt).update(req.body.password).digest("base64");
     req.body.password = salt + "$" + hash;
-    req.body.permissionLevel = 1;
+    req.body.permissionLevel = 2057;
     
     UserModel.createUser(req.body)
         .then((result) => {
@@ -51,7 +51,6 @@ exports.patchById = (req, res) => {
  };
 
  exports.removeById = (req, res) => {
-    console.log('Delete was called');
     UserModel.removeById(req.params.userId)
         .then((result)=>{
             res.status(204).send({});

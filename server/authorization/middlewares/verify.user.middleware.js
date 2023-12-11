@@ -3,7 +3,6 @@ const crypto = require('crypto');
 
 exports.hasAuthValidFields = (req, res, next) => {
     let errors = [];
-    console.log(req.body);
     if (req.body) {
         if (!req.body.email) {
             errors.push('Missing email field');
@@ -25,7 +24,6 @@ exports.hasAuthValidFields = (req, res, next) => {
 };
 
 exports.isPasswordAndUserMatch = (req, res, next) => {
-    console.log(req.body.email);
     UserModel.findByEmail(req.body.email)
         .then((user)=>{
             if(!user){
@@ -48,7 +46,7 @@ exports.isPasswordAndUserMatch = (req, res, next) => {
                     console.log("Username and Password Match");
                     return next();
                 } else {
-                    return res.status(400).send({errors: ['Invalid email or password']});
+                    return res.status(401).send({errors: ['Invalid email or password']});
                 }
             }
         });

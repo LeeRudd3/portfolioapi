@@ -37,7 +37,6 @@ VenueRouter.routesConfig(app);
 // All other GET requests not handled before will return our React app
 app.get('*', (req, res) => {
   const randomText = "Thank You for Calling my API!";
-  console.log(randomText);
   res.json({ message: randomText });
   });
 
