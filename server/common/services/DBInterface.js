@@ -1,4 +1,4 @@
-const config = require('../config.json');
+const config = require('../../../env.config');
 const bodyParser = require('body-parser');
 
 const express = require("express");
@@ -34,7 +34,6 @@ class DBInterface {
 
         // Make the appropriate DB calls
         list = await this.listDatabases(client);
-        console.log(`DB List - ${list}`);
     } catch (e) {
         console.error(e);
         list = e;
@@ -49,8 +48,6 @@ class DBInterface {
     let list = 'DataBases ';
 
     let databasesList = await client.db().admin().listDatabases();
-
-    console.log("Databases:");
     databasesList.databases.forEach(db => {
       list = list + ` - ${db.name}`;
     });
@@ -73,10 +70,7 @@ class DBInterface {
     } catch (e) {
         console.error(e);
         id = e;
-    } finally {
-        // Close the connection to the MongoDB cluster
-        //await this.client.close();
-    }
+    } 
     return id;
   }
 
@@ -86,11 +80,9 @@ class DBInterface {
     try {
       // Connect to the MongoDB cluster
       await this.client.connect();
-      // Make the appropriate DB calls
-      //listings = await findListings(client, numberOfListings);
 
       const projection = {
-        _id: 1,  // Exclude the '_id' field
+        _id: 1,  
         name: 1,
         summary: 1,
         bedrooms: 1,
@@ -98,15 +90,7 @@ class DBInterface {
       };
     
       listings = this.client.db(this.db).collection(this.collection).find().project(projection).limit(numberOfListings).toArray();
-      
-      if (listings) {
-          console.log(`Found a listings : `);
-          //return result;
-      } else {
-          console.log(`No listings found. `);
-          //return null;
-      }
-          
+                
     } catch (e) {
         console.error(e);
         listings = e;
@@ -131,11 +115,8 @@ class DBInterface {
         result = await this.client.db(this.db).collection(this.collection).findOne(idOfListing);
       }
       if (result) {
-          console.log(`Found a listing in the collection with the name '${idOfListing}':`);
-          console.log(result);
           return result;
       } else {
-          console.log(`No listings found with the name '${idOfListing}'`);
           return null;
       }
     } catch (e) {
@@ -179,11 +160,8 @@ class DBInterface {
     }).toArray();
     
     if (result) {
-        console.log(`Found a listing in the collection with the name '${searchTerm}':`);
-        console.log(result);
         return result;
     } else {
-        console.log(`No listings found with the name '${searchTerm}'`);
         return null;
     }
   }
@@ -232,7 +210,6 @@ class DBInterface {
       const query = { _id: new ObjectId(idOfListing) };
       const result = await this.client.db(this.db).collection(this.collection)
               .deleteOne(query);
-      console.log(result);
       if(result.deletedCount == 1) {
         success = true;
       }
