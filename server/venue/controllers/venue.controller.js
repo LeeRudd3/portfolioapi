@@ -11,14 +11,28 @@ exports.list = (req, res) => {
     }
     VenueModel.list(limit, page).then((result) => {
         res.status(200).send(result);
-    })
- };
+    });
+};
+
+exports.getPages = (req, res) => {
+    let limit = req.query.limit && req.query.limit <= 100 ? parseInt(req.query.limit) : 10;
+    console.log(`${limit}`);
+    VenueModel.getPages(limit).then((result) => {
+        res.send(result);
+    });
+};
 
 exports.getById = (req, res) => {
     VenueModel.findById(req.params.venueId).then((result) => {
         res.status(200).send(result);
     });
 };
+
+exports.getAll = (req, res) => {
+    VenueModel.getAll().then((result) => {
+        res.status(200).send(result);
+    });
+}
 
 exports.create = (req, res) => {
     VenueModel.createVenue(req.body)

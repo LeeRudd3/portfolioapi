@@ -12,8 +12,16 @@ exports.routesConfig = function (app) {
         VenueController.list
     ]);
 
+    app.get('/venues/getpages', [
+        VenueController.getPages
+    ]);
+
     app.get('/venues/:venueId', [
         VenueController.getById
+    ]);
+
+    app.get('/getvenues/all', [
+        VenueController.getAll
     ]);
 
     app.post('/venues', [
