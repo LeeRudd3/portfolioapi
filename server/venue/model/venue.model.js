@@ -24,6 +24,26 @@ exports.list = async (perPage, page) => {
     return venue;
   };
 
+  exports.getPages = async(limit) => {
+    var totalCount = null;
+    var totalPages = null;
+      
+    try {
+      // Connect to the MongoDB cluster
+      await client.connect();
+    
+      totalCount = await client.db(db).collection(collection).countDocuments();
+      console.log(`totalCount is ${totalCount}`);
+      totalPages = Math.ceil(totalCount / limit); 
+      console.log(`totalPages is ${totalPages}`);
+    } catch (e) {
+        console.error(e);
+        venue = e;
+    } 
+  
+    return {count: `${totalPages}`};
+  };
+
   exports.findById = async (id) => {
     var result = null;
     try {
@@ -37,6 +57,23 @@ exports.list = async (perPage, page) => {
     } 
   
     return result;
+  };
+
+  exports.getAll = async () => {
+    var venue = null;
+      
+    try {
+      // Connect to the MongoDB cluster
+      await client.connect();
+    
+      venue = client.db(db).collection(collection).find().toArray();
+                
+    } catch (e) {
+        console.error(`error was ${e}`);
+        venue = e;
+    } 
+  
+    return venue;
   };
 
   exports.createVenue = async (venueData) => {
