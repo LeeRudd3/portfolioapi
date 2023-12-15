@@ -32,8 +32,9 @@ exports.isPasswordAndUserMatch = (req, res, next) => {
             }else{
                 let passwordFields = user.password.split('$');
                 let salt = passwordFields[0];
+                console.log(`password is ${req.body.password}`)
                 let hash = crypto.createHmac('sha512', salt)
-                                 .update(atob(req.body.password))
+                                 .update(req.body.password)
                                  .digest("base64");
                 if (hash === passwordFields[1]) {
                     req.body = {
