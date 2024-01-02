@@ -149,6 +149,24 @@ exports.removeByIds = async (venueIds) => {
     return success;
 };
 
+exports.removeByName = async (venueName) => {
+  var success = false;
+  
+    try {
+      const query = {name: venueName}
+      const result = await client.db(db).collection(collection)
+        .deleteOne(query);
+      console.log(`${result.deletedCount} document(s) was/were deleted.`);
+      success = result.deletedCount;
+    }
+    catch (e) {
+      console.log(`Error in Deleting Venues ${e}`);
+      success = -1;
+    }
+  
+    return success;
+};
+
 exports.search = async (searchTerm) => {
     const regex = new RegExp(searchTerm, 'i');
     const result = await client.db(db).collection(collection).find({

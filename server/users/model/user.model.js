@@ -106,3 +106,25 @@ exports.removeById = async (userId) => {
 
   return success;
 };
+
+exports.removeByEmail = async (userEmail) => {
+  var success = false;
+  
+  try {
+    const query = { email: userEmail };
+    const result = await client.db(db).collection(collection)
+            .deleteOne(query);
+    if(result.deletedCount == 1) {
+      success = true;
+    }
+    else {
+      console.log(`Wrong number of users deleted.  Expecting 1 but ${result.deletedCount} where deleted`);
+    }
+  }
+  catch (e) {
+    console.log(`Error in Deleting user ${e}`);
+    success = false
+  }
+
+  return success;
+};
