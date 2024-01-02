@@ -62,6 +62,13 @@ exports.removeByIds = (req, res) => {
     });
 };
 
+exports.removeByName = (req, res) => {
+    VenueModel.removeByName(req.params.name)
+        .then((result)=>{
+            res.status(204).send({});
+    });
+};
+
 exports.search = (req, res) => {
     VenueModel.search(req.params.searchTerm)
         .then((result)=>{

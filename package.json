@@ -24,6 +24,7 @@
     "node": "v18.17.1"
   },
   "devDependencies": {
-    "jasmine": "^5.1.0"
+    "jasmine": "^5.1.0",
+    "sinon": "^17.0.1"
   }
 }

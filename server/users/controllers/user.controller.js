@@ -56,3 +56,10 @@ exports.patchById = (req, res) => {
             res.status(204).send({});
         });
  };
+
+ exports.removeByEmail = (req, res) => {
+    UserModel.removeByEmail(req.params.userEmail)
+        .then((result)=>{
+            res.status(204).send({});
+        });
+ };

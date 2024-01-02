@@ -40,6 +40,10 @@ exports.routesConfig = function (app) {
         VenueController.removeByIds
     ]);
 
+    app.delete('/venue/name/:name', [
+        VenueController.removeByName
+    ]);
+
     app.get('/venues/search/:searchTerm', [
         VenueController.search
     ]);

@@ -45,5 +45,12 @@ exports.routesConfig = function (app) {
         PermissionMiddleware.onlySameUserOrAdminCanDoThisAction,
         UsersController.removeById
     ]);
+
+    app.delete('/users/email/:userEmail', [
+        ValidationMiddleware.validJWTNeeded,
+        PermissionMiddleware.minimumPermissionLevelRequired(FREE),
+        PermissionMiddleware.onlySameUserOrAdminCanDoThisAction,
+        UsersController.removeByEmail
+    ]);
 };
 
